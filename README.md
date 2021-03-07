@@ -6,8 +6,7 @@ A lightweight script that automatically downloads and installs WordPress, plugin
 
 Just download the .zip archive, unzip and run wp-quick-install-bash.sh
 
-======================================================================
-Russian
+# Russian
 
 WP Quick Install Bash - самый простой способ установить WordPress.
 
