@@ -28,7 +28,7 @@ mkdir -p uploads
 cd /var/www/$SITENAME
 sed -i "s/database_name_here/$DBNAME/;s/username_here/$DBUSER/;s/password_here/$DBUSERPASS/" wp-config.php
 #create auth key
-chown $CHOWNDIRSITEUSER: -R /var/www/$SITENAME
+
 wget -O authwp.php https://api.wordpress.org/secret-key/1.1/salt/
 #add string <?php to authwp.php
 sed -i '1s/^/<?php\n/' authwp.php
@@ -52,6 +52,8 @@ RewriteRule . /index.php [L]
 
 # END WordPress
 " > .htaccess
+
+chown $CHOWNDIRSITEUSER: -R /var/www/$SITENAME
 
 # Output
 WPVER=$(grep "wp_version = " /var/www/$SITENAME/wp-includes/version.php |awk -F\' '{print $2}')

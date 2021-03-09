@@ -6,7 +6,7 @@ if [ $VARIANTVHOST == "apache_vhost" ]; then
 echo
 echo -e "\e[1;31;42m$LANGSTRAPACHEHTTPSVARIANT\e[0m"
 echo
-PS3="$LANGSTRACHEHTTPSVARIANT : "
+PS3="$LANGSTRACHEHTTPSVARIANT"
 echo
 select ACHEHTTPSVARIANT in "apache_http_port_redirect_https_port" "apache_not_https_port" "apache_80_and_443_port"
 do

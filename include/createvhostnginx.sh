@@ -6,7 +6,7 @@ if [ $VARIANTVHOST == "nginx_vhost" ]; then
 echo
 echo -e "\e[1;31;42m$LANGSTRNGINXHTTPSVARIANT\e[0m"
 echo
-PS3="$LANGSTRACHEHTTPSVARIANT : "
+PS3="$LANGSTRACHEHTTPSVARIANT"
 echo
 select ACHEHTTPSVARIANT in "nginx_http_port_redirect_https_port" "nginx_not_https_port" "nginx_80_and_443_port"
 do
