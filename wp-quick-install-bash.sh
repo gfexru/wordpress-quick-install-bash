@@ -77,16 +77,17 @@ if [[ -z "$DBTABLEPREFIX" ]];then
 fi
 
 #Create db MySQL
-source ./include/createdbmysql.sh
+#source ./include/createdbmysql.sh
 
 
 #Create Vhost
-source ./include/createvhost.sh
-source ./include/createvhostapache.sh
-source ./include/createvhostnginx.sh
+#source ./include/createvhost.sh
+#source ./include/createvhostapache.sh
+#source ./include/createvhostnginx.sh
 
 
 #Install Wordpress
+source ./include/selectversionwordpress.sh
 source ./include/installwordpress.sh
 source ./include/installwordpressshell.sh
 
