@@ -83,15 +83,24 @@ mkdir -p uploads
 cd $PATHSITE/$SITENAME
 sed -i "s/database_name_here/$DBNAME/;s/username_here/$DBUSER/;s/password_here/$DBUSERPASS/" wp-config.php
 #create auth key
-wget -O authwp.php https://api.wordpress.org/secret-key/1.1/salt/
-#add string <?php to authwp.php
-sed -i '1s/^/<?php\n/' authwp.php
+wget -O salt.php https://api.wordpress.org/secret-key/1.1/salt/
+#add string <?php to salt.php
+sed -i '1s/^/<?php\n/' salt.php
 #replace AUTH_KEY and more to wp-config.php
 sed -i -e "/NONCE_SALT/a\
-require_once(__DIR__ . \""/authwp.php"\");
+require_once(__DIR__ . \""/salt.php"\");
 /AUTH_KEY/,/NONCE_SALT/d" wp-config.php
 #replace table prefix
 sed -i "s/wp\_/$DBTABLEPREFIX\_/" wp-config.php
+
+#WordPress update method
+sed -i -e '/$table_prefix/a #WordPress update method' wp-config.php
+sed -i -e '/#WordPress update method/a define(FS_METHOD, direct);' wp-config.php
+#WordPress update policy
+sed -i -e '/$table_prefix/a #WordPress update policy' wp-config.php
+sed -i -e '/#WordPress update policy/a define(AUTOMATIC_UPDATER_DISABLED, false);' wp-config.php
+sed -i -e '/#WordPress update policy/a define(WP_AUTO_UPDATE_CORE, minor);' wp-config.php
+sed -i "s/FS_METHOD, direct/\'FS_METHOD\', \'direct\'/;s/AUTOMATIC_UPDATER_DISABLED/\'AUTOMATIC_UPDATER_DISABLE'/;s/WP_AUTO_UPDATE_CORE, minor/\'WP_AUTO_UPDATE_CORE\', \'minor\'/" wp-config.php
 #create .htaccess
 echo "
 # BEGIN WordPress
